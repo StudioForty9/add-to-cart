@@ -10,6 +10,7 @@ addToCartExtend = Class.create({
         miniCartToggleClass: 'skip-active',
         miniCartLinkElement: '.header-minicart a.skip-cart'
     },
+    timeout: null,
     initialize: function(options) {
         if (options) {
             this.settings = Object.extend(options, this.settings);
@@ -91,7 +92,10 @@ addToCartExtend = Class.create({
         miniCount.update(ev.memo.cartCount);
 
         // Set a timeout to hide the mini cart
-        setTimeout((function() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        this.timeout = setTimeout((function() {
             this.hideMiniCart();
         }).bind(this), 4000);
 
