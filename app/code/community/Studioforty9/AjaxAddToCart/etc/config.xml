@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <modules>
+        <Studioforty9_AjaxAddToCart>
+            <version>0.0.1</version>
+        </Studioforty9_AjaxAddToCart>
+    </modules>
+    <global>
+        <blocks>
+            <studioforty9_ajaxaddtocart>
+                <class>Studioforty9_AjaxAddToCart_Block</class>
+            </studioforty9_ajaxaddtocart>
+        </blocks>
+        <helpers>
+            <studioforty9_ajaxaddtocart>
+                <class>Studioforty9_AjaxAddToCartHelper</class>
+            </studioforty9_ajaxaddtocart>
+        </helpers>
+        <models>
+            <studioforty9_ajaxaddtocart>
+                <class>Studioforty9_AjaxAddToCart_Model</class>
+            </studioforty9_ajaxaddtocart>
+        </models>
+    </global>
+    <frontend>
+        <events>
+            <checkout_cart_add_product_complete>
+                <observers>
+                    <aligent_addtocart>
+                        <type>singleton</type>
+                        <class>studioforty9_ajaxaddtocart/observer</class>
+                        <method>onAddToCart</method>
+                    </aligent_addtocart>
+                </observers>
+            </checkout_cart_add_product_complete>
+        </events>
+        <layout>
+            <updates>
+                <!--| /app/design/frontend/base/default/layout |-->
+                <studioforty9_ajaxaddtocart>
+                    <file>studioforty9_ajaxaddtocart.xml</file>
+                </studioforty9_ajaxaddtocart>
+            </updates>
+        </layout>
+    </frontend>
+</config>

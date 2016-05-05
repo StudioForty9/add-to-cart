@@ -1,0 +1,5 @@
+app/code/community/Studioforty9/AjaxAddToCart                           app/code/community/Studioforty9/AjaxAddToCart
+app/design/frontend/base/default/layout/studioforty9_ajaxaddtocart.xml  app/design/frontend/base/default/layout/studioforty9_ajaxaddtocart.xml
+app/design/frontend/base/default/template/studioforty9/ajaxaddtocart    app/design/frontend/base/default/template/studioforty9/ajaxaddtocart
+app/etc/modules/Studioforty9_AjaxAddToCart.xml                          app/etc/modules/Studioforty9_AjaxAddToCart.xml
+js/studioforty9/ajaxaddtocart                                           js/studioforty9/ajaxaddtocart
