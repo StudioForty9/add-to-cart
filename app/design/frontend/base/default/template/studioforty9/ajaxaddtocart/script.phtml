@@ -16,7 +16,9 @@
 <script type="text/javascript">
     document.observe("dom:loaded", function() {
         $$('#product_addtocart_form .btn-cart').each(function (el) {
-            el.writeAttribute('onclick','');
+            if (typeof el.readAttribute('onclick') != 'null') {
+                el.writeAttribute('onclick', '');
+            }
         });
         ajaxAddToCart = new ajaxAddToCartCore('.btn-cart', $('product_addtocart_form'));
     });

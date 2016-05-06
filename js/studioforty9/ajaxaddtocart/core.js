@@ -27,11 +27,11 @@ ajaxAddToCartCore = Class.create({
         this.container.select(this.selector).invoke('observe', 'click', this.onSubmit.bind(this));
     },
 
-    onSubmit: function(ev, dummy, overrideForm) {
-        ev.preventDefault();
+    onSubmit: function(e, dummy, overrideForm) {
+        e.preventDefault();
 
-        this.ev = ev;
-        this.clickedSubmit = ev.element();
+        this.ev = e;
+        this.clickedSubmit = e.element();
 
         var eventData = {
             allowAjax: true,  // Allow the event to stop the Ajax submit (e.g. because of a validation fail)
@@ -41,21 +41,21 @@ ajaxAddToCartCore = Class.create({
         Event.fire(document, 'addToCart:preAjax', eventData);
 
         if (!eventData.allowAjax){
-            ev.preventDefault();
+            e.preventDefault();
             return false;
         }
 
         this.clickedSubmit.addClassName('loading');
 
         if (typeof overrideForm == 'undefined') {
-            this.form = ev.target.up('form');
+            this.form = e.target.up('form');
         } else {
             this.form = overrideForm;
         }
 
         // The event target might override the URL to submit the request to.
         // DYOC does this for quickshop for example.
-        var overrideSubmitUrl = ev.target.readAttribute('data-submiturl');
+        var overrideSubmitUrl = e.target.readAttribute('data-submiturl');
         if (overrideSubmitUrl != null) {
             this.form.writeAttribute('action', overrideSubmitUrl);
         }

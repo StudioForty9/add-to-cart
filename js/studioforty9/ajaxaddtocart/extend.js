@@ -94,13 +94,13 @@ addToCartExtend = Class.create({
         return miniCart;
     },
 
-    personalize: function(ev) {
+    personalize: function(e) {
         var messageContainer = $$(this.settings.messageContainer).first();
         var miniCount = $$(this.settings.miniCartCountElement).first();
         var miniCart = $(this.settings.miniCartElementId);
 
         // Update the count in the header
-        miniCount.update(ev.memo.cartCount);
+        miniCount.update(e.memo.cartCount);
 
         // Set a timeout to hide the mini cart
         if (this.timeout) {
@@ -111,20 +111,20 @@ addToCartExtend = Class.create({
         }).bind(this), 4000);
 
         // Add a message to the page and update the mini cart
-        if (ev.memo.success == 'true') {
-            messageContainer.insert(ev.memo.html.result);
-            miniCart.update().insert(ev.memo.html.minicart);
+        if (e.memo.success == 'true') {
+            messageContainer.insert(e.memo.html.result);
+            miniCart.update().insert(e.memo.html.minicart);
         }
 
         // fire the cookie personalisation event
         Event.fire(document, 'personalisationcookie:render');
     },
 
-    magentoValidation: function(ev) {
+    magentoValidation: function(e) {
         // If Magento form validation fails, prevent the form submission.
         if (typeof productAddToCartForm != 'undefined') {
             if (!productAddToCartForm.validator.validate()) {
-                ev.memo.allowAjax = false;
+                e.memo.allowAjax = false;
             }
         }
     }

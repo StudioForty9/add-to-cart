@@ -11,14 +11,18 @@
  * @link      https://github.com/studioforty9/add-to-cart
  */
 
-/** @var Mage_Core_Block_Template $this */
+/** @var Studioforty9_AjaxAddToCart_Block_Messages_Success $this */
 ?>
 <div id="ajaxaddtocart-message" class="messages clearfix" style="clear:both;">
     <ul class="success-msg">
         <li>
             <div style="padding: 10px;">
                 <strong><?php echo $this->__('Added to your basket successfully.') ?></strong>
+                <?php if ($this->isConfigurable()): ?>
+                <p class="<?php echo $this->getProductType() ?>"><?php echo $this->getSelections() ?></p>
+                <?php else: ?>
                 <p>&nbsp;</p>
+                <?php endif; ?>
                 <a href="/checkout/cart/" class="button2 btn-cart"><?php echo $this->__('View Basket') ?></a>
                 <a href="/checkout/onepage/" class="button btn-checkout"><?php echo $this->__('Checkout') ?></a>
             </div>
