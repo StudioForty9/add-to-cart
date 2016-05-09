@@ -12,16 +12,14 @@
  */
 
 /**
- * Studioforty9_AjaxAddToCart_Helper_Data
+ * Studioforty9_AjaxAddToCart_Block_Script
  *
  * @category   Studioforty9
  * @package    Studioforty9_AjaxAddToCart
  * @subpackage Block
  */
-class Studioforty9_AjaxAddToCart_Helper_Data extends Mage_Core_Helper_Abstract
+class Studioforty9_AjaxAddToCart_Block_Script extends Mage_Core_Block_Template
 {
-    const CONFIG_ENABLED = 'studioforty9_ajaxaddtocart/settings/enabled';
-
     /**
      * Determine whether the module is enabled or not.
      *
@@ -29,6 +27,6 @@ class Studioforty9_AjaxAddToCart_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isEnabled()
     {
-        return Mage::getStoreConfigFlag(self::CONFIG_ENABLED);
+        return Mage::helper('studioforty9_ajaxaddtocart')->isEnabled();
     }
 }

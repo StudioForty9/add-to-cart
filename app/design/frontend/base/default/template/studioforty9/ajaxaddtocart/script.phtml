@@ -11,8 +11,9 @@
  * @link      https://github.com/studioforty9/add-to-cart
  */
 
-/** @var Mage_Core_Block_Template $this */
+/** @var Studioforty9_AjaxAddToCart_Block_Messages_Script $this */
 ?>
+<?php if ($this->isEnabled()): ?>
 <script type="text/javascript">
     document.observe("dom:loaded", function() {
         $$('#product_addtocart_form .btn-cart').each(function (el) {
@@ -23,3 +24,4 @@
         ajaxAddToCart = new ajaxAddToCartCore('.btn-cart', $('product_addtocart_form'));
     });
 </script>
+<?php endif; ?>

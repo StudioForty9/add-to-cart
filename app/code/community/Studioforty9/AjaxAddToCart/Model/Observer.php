@@ -91,16 +91,16 @@ class Studioforty9_AjaxAddToCart_Model_Observer
         $layout = Mage::app()->getLayout();
 
         /** @var Mage_Checkout_Block_Cart_Sidebar $minicartHead */
-        $minicartContent = $layout->createBlock('checkout/cart_sidebar', 'minicart_content');
-        $minicartContent->setTemplate('checkout/cart/minicart/items.phtml');
+        $minicart = $layout->createBlock('checkout/cart_sidebar', 'minicart_content');
+        $minicart->setTemplate('checkout/cart/minicart/items.phtml');
 
-        $renderTemplate = 'checkout/cart/minicart/default.phtml';
-        $minicartContent->addItemRender('default', 'checkout/cart_item_renderer', $renderTemplate);
-        $minicartContent->addItemRender('simple', 'checkout/cart_item_renderer', $renderTemplate);
-        $minicartContent->addItemRender('grouped', 'checkout/cart_item_renderer_grouped', $renderTemplate);
-        $minicartContent->addItemRender('configurable', 'checkout/cart_item_renderer_configurable', $renderTemplate);
+        $template = 'checkout/cart/minicart/default.phtml';
+        $minicart->addItemRender('default', 'checkout/cart_item_renderer', $template);
+        $minicart->addItemRender('simple', 'checkout/cart_item_renderer', $template);
+        $minicart->addItemRender('grouped', 'checkout/cart_item_renderer_grouped', $template);
+        $minicart->addItemRender('configurable', 'checkout/cart_item_renderer_configurable', $template);
 
-        return $minicartContent;
+        return $minicart;
     }
 
     /**
