@@ -67,11 +67,11 @@ ajaxAddToCartCore = Class.create({
                 document.fire('addToCart:ajaxFinished');
                 this.clickedSubmit.removeClassName('loading');
                 try {
-                    var aResponse = JSON.parse(response.responseText);
-                    if (aResponse.success != 'true') {
+                    var response = JSON.parse(response.responseText);
+                    if (response.success != 'true') {
                         this.form.submit()
                     } else {
-                        document.fire('addToCart:addComplete', aResponse);
+                        document.fire('addToCart:addComplete', response);
                         return false;
                     }
                 } catch (e) {

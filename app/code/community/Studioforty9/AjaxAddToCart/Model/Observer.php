@@ -16,7 +16,7 @@
  *
  * @category   Studioforty9
  * @package    Studioforty9_AjaxAddToCart
- * @subpackage Block
+ * @subpackage Model
  */
 class Studioforty9_AjaxAddToCart_Model_Observer
 {
@@ -73,7 +73,7 @@ class Studioforty9_AjaxAddToCart_Model_Observer
             'studioforty9.ajaxaddtocart.success',
             array(
                 'template' => 'studioforty9/ajaxaddtocart/success.phtml',
-                'product_type' => $product->getTypeId(),
+                'product' => $product,
                 'selections' => $selections
             )
         );

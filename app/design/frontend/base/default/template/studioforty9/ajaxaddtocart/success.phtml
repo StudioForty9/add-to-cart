@@ -12,19 +12,22 @@
  */
 
 /** @var Studioforty9_AjaxAddToCart_Block_Messages_Success $this */
+
+/** @var Mage_Catalog_Model_Product $_product */
+$_product = $this->getProduct();
 ?>
 <div id="ajaxaddtocart-message" class="messages clearfix" style="clear:both;">
     <ul class="success-msg">
         <li>
             <div style="padding: 10px;">
-                <strong><?php echo $this->__('Added to your basket successfully.') ?></strong>
+                <strong><?php echo $this->__('%s was added to your shopping cart.', $_product->getName()) ?></strong>
                 <?php if ($this->isConfigurable()): ?>
                 <p class="<?php echo $this->getProductType() ?>"><?php echo $this->getSelections() ?></p>
                 <?php else: ?>
                 <p>&nbsp;</p>
                 <?php endif; ?>
-                <a href="/checkout/cart/" class="button2 btn-cart"><?php echo $this->__('View Basket') ?></a>
-                <a href="/checkout/onepage/" class="button btn-checkout"><?php echo $this->__('Checkout') ?></a>
+                <a href="<?php echo $this->getBaseUrl() ?>checkout/cart/" class="button2 btn-cart"><?php echo $this->__('View Cart') ?></a>
+                <a href="<?php echo $this->getBaseUrl() ?>checkout/onepage/" class="button btn-checkout"><?php echo $this->__('Checkout') ?></a>
             </div>
         </li>
     </ul>
