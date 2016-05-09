@@ -32,33 +32,35 @@ class Studioforty9_AjaxAddToCart_Model_Observer
         $request = $observer->getRequest();
         $product = $observer->getProduct();
 
-        if ($request->isAjax()) {
-            Mage::getSingleton('checkout/session')->setNoCartRedirect(true);
-
-            $selections = ('configurable' === $product->getTypeId())
-                ? $this->getSuperAttributesSelections($request, $product)
-                : '';
-
-            $observer->getResponse()->setBody(
-                Mage::helper('core')->jsonEncode(array(
-                    'success' => 'true',
-                    'redirectTo' => false,
-                    'cartCount' => Mage::getSingleton('checkout/cart')->getSummaryQty(),
-                    'html' => array(
-                        'result' => $this->getSuccessHTML($product, $selections)->toHtml(),
-                        'minicart' => $this->getMiniCartBlock()->toHtml()
-                    ),
-                    'product' => array(
-                        'qty' => $product->getQty(),
-                        'url' => $product->getProductUrl(),
-                        'name' => $product->getName(),
-                        'type' => $product->getTypeId(),
-                        'imageUrl' => (string) Mage::helper('catalog/image')->init($product, 'thumbnail', null, 'minicart_thumb'),
-                        'formattedPrice' => Mage::helper('core')->currency($product->getFinalPrice(), true, false),
-                    )
-                ))
-            );
+        if (!$request->isAjax()) {
+            return;
         }
+
+        Mage::getSingleton('checkout/session')->setNoCartRedirect(true);
+
+        $selections = ('configurable' === $product->getTypeId())
+            ? $this->getSuperAttributesSelections($request, $product)
+            : '';
+
+        $observer->getResponse()->setBody(
+            Mage::helper('core')->jsonEncode(array(
+                'success' => 'true',
+                'redirectTo' => false,
+                'cartCount' => Mage::getSingleton('checkout/cart')->getSummaryQty(),
+                'html' => array(
+                    'result' => $this->getSuccessHTML($product, $selections)->toHtml(),
+                    'minicart' => $this->getMiniCartBlock()->toHtml()
+                ),
+                'product' => array(
+                    'qty' => $product->getQty(),
+                    'url' => $product->getProductUrl(),
+                    'name' => $product->getName(),
+                    'type' => $product->getTypeId(),
+                    'imageUrl' => (string) Mage::helper('catalog/image')->init($product, 'thumbnail', null, 'minicart_thumb'),
+                    'formattedPrice' => Mage::helper('core')->currency($product->getFinalPrice(), true, false),
+                )
+            ))
+        );
     }
 
     /**
@@ -102,8 +104,10 @@ class Studioforty9_AjaxAddToCart_Model_Observer
     }
 
     /**
-     * @param $request
-     * @param $product
+     * Get the attribute selections.
+     *
+     * @param Mage_Core_Controller_Request_Http $request
+     * @param Mage_Catalog_Model_Product        $product
      *
      * @return string
      */
